@@ -157,6 +157,10 @@ jobs:
               --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --query 'Reservations[0].Instances[0].PublicIpAddress' \
               --output text >> .circleci/ansible/inventory.txt
+      - run: 
+          name: display ec2 ips
+          command: cat .circleci/ansible/inventory.txt
+
       - persist_to_workspace:
           root: ~/
           paths:
