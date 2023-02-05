@@ -297,7 +297,7 @@ jobs:
                     
   deploy-backend:
     docker:
-    - image: cimg/base:stable
+    - image: cimg/python:3.10
     steps:
       - checkout
       - add_ssh_keys:
