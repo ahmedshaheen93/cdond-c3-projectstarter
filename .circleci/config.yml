@@ -297,7 +297,7 @@ jobs:
                     
   deploy-backend:
     docker:
-    - image: cimg/python:3.10
+    - image: cimg/base:stable
     steps:
       - checkout
       - add_ssh_keys:
@@ -305,11 +305,11 @@ jobs:
       - install_ansible
       - install_awscli
       - install_nodejs
+      - attach_workspace:
+          at: ~/
       - restore_cache:
           keys: 
             - backend-build-{{ checksum "backend/package-lock.json" }}
-      - attach_workspace:
-          at: ~/
       - run:
           name: Install dependencies
           command: |
